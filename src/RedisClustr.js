@@ -144,6 +144,7 @@ RedisClustr.prototype.getRandomConnection = function(exclude, forceSlaves) {
   });
 
   var randomIndex = Math.floor(Math.random() * available.length);
+  console.log("available Array",available,randomIndex)
   console.log("self.connections[available[randomIndex]]",self.connections[available[randomIndex]])
   return self.connections[available[randomIndex]];
 };
