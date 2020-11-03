@@ -716,6 +716,7 @@ RedisClustr.prototype.evalsha = overwriteFn('_eval', 'evalsha');
  * @param   {array}   args  Arguments to be passed to the command (list of channels) (including commandCallback)
  * @private
  */
+/*
 RedisClustr.prototype._subscribe = function(cmd, args) {
   var self = this;
 
@@ -753,7 +754,7 @@ RedisClustr.prototype._subscribe = function(cmd, args) {
     cli[cmd](args, cb);
   });
 };
-
+*/
 RedisClustr.prototype.subscribe = overwriteFn('_subscribe', 'subscribe');
 RedisClustr.prototype.psubscribe = overwriteFn('_subscribe', 'psubscribe');
 RedisClustr.prototype.unsubscribe = overwriteFn('_subscribe', 'unsubscribe');
