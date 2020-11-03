@@ -287,7 +287,7 @@ RedisClustr.prototype.selectClient = function(key, conf) {
 
   var slot = calculateSlot(key);
   var clients = self.slots[slot];
-
+  console.log("clients slots",clients)
   // if we haven't got config for this slot, try any connection
   if (!clients || !clients.length) return self.getRandomConnection();
 
@@ -569,10 +569,11 @@ RedisClustr.prototype.subscribeAll = function(exclude) {
     });
     self.subscribeClient = null;
   }
-
+  console.log("exclude",exclude)
   var con = self.getRandomConnection(exclude);
   if (!con) {
     if (!self.ready) self.wait('ready', self.subscribeAll.bind(self, exclude));
+    console.log("self")
     return false;
   }
 
@@ -588,6 +589,7 @@ RedisClustr.prototype.subscribeAll = function(exclude) {
     ) {
       self.emit('connectionError', err, cli);
       // immediately try to re-subscribe
+      console.log("CLI address",cli.address )
       self.subscribeAll([ cli.address ]);
       return;
     }
@@ -597,6 +599,7 @@ RedisClustr.prototype.subscribeAll = function(exclude) {
   });
 
   cli.once('end', function() {
+    console.log("CLI address",cli.address )
     self.subscribeAll([ cli.address ]);
   });
 
